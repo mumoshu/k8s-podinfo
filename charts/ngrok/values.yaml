@@ -14,9 +14,25 @@ service:
   port: 4040
 
 expose:
-  service: ga-podinfo:9898
+  service: teleport:3080
+#  service: ga-podinfo:9898
 
-token: 4i3rDinhLqMHtvez71N9S_38rkS7onwv77VFNZTaUR6
+# https://gravitational.com/teleport/docs/admin-guide/#ports
+tunnels:
+  proxy-ssh:
+    addr: teleport:3023
+    proto: tcp
+  proxy-tunnel:
+    addr: teleport:3024
+    proto: tcp
+  auth:
+    addr: teleport:3025
+    proto: tcp
+  proxy-web:
+    addr: teleport:3080
+    proto: http
+
+token: placeyourauthtokenhere
 
 nodeSelector: {}
 

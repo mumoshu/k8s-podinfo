@@ -10,3 +10,5 @@ data:
 {{- if .Values.token }}
     authtoken: {{ .Values.token }}
 {{- end }}
+    tunnels:
+{{ toYaml .Values.tunnels | indent 6 }}

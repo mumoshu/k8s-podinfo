@@ -27,8 +27,10 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
             - ./ngrok
-            - http
-            - {{ .Values.expose.service }}
+            - start
+            {{ range $t, $_ := .Values.tunnels }}
+            - {{ $t }}
+            {{ end }}
           volumeMounts:
           - name: config
             mountPath: /home/ngrok/.ngrok2
