@@ -19,14 +19,18 @@ expose:
 
 # https://gravitational.com/teleport/docs/admin-guide/#ports
 tunnels:
-  proxy-ssh:
-    addr: teleport:3023
-    proto: tcp
+#  proxy-ssh:
+#    addr: teleport:3023
+#    proto: tcp
   proxy-tunnel:
     addr: teleport:3024
     proto: tcp
   auth:
     addr: teleport:3025
+    proto: tcp
+  proxy-kube:
+    addr: teleport:3026
+    # Don't expose this as `http` and try to point kubeconfig to the ngrok's https endpoint. Otherwise kubectl gets `Unable to connect to the server: x509: certificate signed by unknown authority` errors
     proto: tcp
   proxy-web:
     addr: teleport:3080
